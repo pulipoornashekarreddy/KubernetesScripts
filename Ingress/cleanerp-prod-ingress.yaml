@@ -1,0 +1,78 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cleanerp-backend-ingress
+  namespace: clean-erp-prod
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"   # IMPORTANT
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: profile.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: profile-service-prod
+                port:
+                  number: 8110
+    
+    - host: identity.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: identity-service-prod
+                port:
+                  number: 8081
+
+    - host: academic.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: academic-service-prod
+                port:
+                  number: 8220
+
+    - host: www.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: clean-erp-content-ui-prod
+                port:
+                  number: 3000
+
+    - host: cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: clean-erp-content-ui-prod
+                port:
+                  number: 3000
+    # -------------------------------
+    # Academics Service (test)
+    # -------------------------------
+    # - host: test-academics.cleanerp.com
+    #   http:
+    #     paths:
+    #       - path: /
+    #         pathType: Prefix
+    #         backend:
+    #           service:
+    #             name: academics-service-beta
+    #             port:
+    #               number: 9310
