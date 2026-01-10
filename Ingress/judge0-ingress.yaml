@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: judge0-ingress
+  namespace: judge0
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"   # IMPORTANT
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: judge0.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: profile-service-prod
+                port:
+                  number: 2358
+    

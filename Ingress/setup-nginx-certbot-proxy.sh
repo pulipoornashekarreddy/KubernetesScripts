@@ -22,6 +22,10 @@ DOMAINS=(
   "www.cleanerp.com"
   "cleanerp.com"
   "test.cleanerp.com"
+  "test-metrics.cleanerp.com"
+  "metrics.cleanerp.com"
+  "assessment.cleanerp.com"
+  "test-assessment.cleanerp.com"
   # add more if required
 )
 

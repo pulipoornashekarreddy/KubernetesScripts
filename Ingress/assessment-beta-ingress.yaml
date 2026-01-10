@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: assessment-backend-ingress
+  namespace: assessment-beta
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"   # IMPORTANT
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: test-assessment.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: assessment-service
+                port:
+                  number: 4001

@@ -20,6 +20,17 @@ spec:
                 port:
                   number: 9110
 
+    - host: test-billing.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: billing-service-beta
+                port:
+                  number: 9310
+
     - host: test-identity.cleanerp.com
       http:
         paths:
@@ -52,6 +63,17 @@ spec:
                 name: clean-erp-content-ui-beta
                 port:
                   number: 3000
+
+    - host: test-metrics.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: metrics-service-beta
+                port:
+                  number: 3001
     # -------------------------------
     # Academics Service (test)
     # -------------------------------

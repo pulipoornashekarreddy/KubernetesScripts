@@ -1,4 +1,3 @@
-
 sudo apt update && sudo apt upgrade -y
 
 # 1️⃣ Disable swap
