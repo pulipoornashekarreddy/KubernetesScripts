@@ -28,3 +28,7 @@ NODEPORT_HTTPS=$(kubectl get svc -n ingress-nginx ingress-nginx-controller -o=js
 
 echo "HTTP will be available on NodePort:  $NODEPORT_HTTP"
 echo "HTTPS will be available on NodePort: $NODEPORT_HTTPS"
+
+
+# HTTP will be available on NodePort:  30545
+# HTTPS will be available on NodePort: 32370

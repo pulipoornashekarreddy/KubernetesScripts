@@ -18,7 +18,7 @@ spec:
               service:
                 name: profile-service-prod
                 port:
-                  number: 8110
+                  number: 8082
     
     - host: billing.cleanerp.com
       http:

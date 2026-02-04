@@ -18,7 +18,7 @@ spec:
               service:
                 name: profile-service-beta
                 port:
-                  number: 9110
+                  number: 8082
 
     - host: test-billing.cleanerp.com
       http:
@@ -40,7 +40,7 @@ spec:
               service:
                 name: identity-service-beta
                 port:
-                  number: 9080
+                  number: 8081
 
     - host: test-academic.cleanerp.com
       http:

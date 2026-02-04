@@ -6,6 +6,11 @@
 # sudo nano setup_nginx_and_certificates.sh
 # sudo bash setup_nginx_and_certificates.sh
 
+sudo apt update && sudo apt upgrade -y
+
+sudo apt install -y nginx
+
+sudo apt install -y certbot python3-certbot-nginx
 
 # Define services and ports
 declare -A services=(

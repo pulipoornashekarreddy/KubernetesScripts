@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+
+# file name setup_nginx_and_certificates.sh
+# rm -rf setup_nginx_and_certificates.sh
+# sudo nano setup_nginx_and_certificates.sh
+# sudo bash setup_nginx_and_certificates.sh
+
 set -euo pipefail
 
 # -------------------------
