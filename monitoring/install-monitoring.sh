@@ -37,3 +37,13 @@ kubectl patch svc kube-prom-stack-grafana -n monitoring -p '{
 }'
 
 echo "✅ Grafana is ready on NodePort 32000"
+
+# if on AWS open the following ports
+# 9100 -  for prometheus
+
+
+# if adding disk space later, run below commands to attach volumes
+# sudo growpart /dev/nvme0n1 1
+# sudo resize2fs /dev/nvme0n1p1
+
+# df -h // to verify the disk space
