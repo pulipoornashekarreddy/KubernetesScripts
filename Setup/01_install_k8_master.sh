@@ -51,3 +51,35 @@ cilium install
 
 cilium status
 cilium version
+
+# If on AWS please enable following ports on security group
+# 6443 - TCP - Kubernetes API Server (REQUIRED for join)
+# 2379-2380 TCP etcd (if stacked etcd)
+# 10250 - TCP - kubelet
+# 10257 - TCP - controller-manager
+# 10259 - TCP - Scheduler
+# 30000-32767 - TCP - NodePort Services
+# 4240 - TCP - Cilium health checking
+# 8472 - UDP - VXLAN (if using VXLAN mode)
+# 6081 - UDP - Geneve (if using Geneve mode)
+
+# Which Encapsulation Are You Using
+# kubectl -n kube-system get cm cilium-config -o yaml | grep tunnel
+# tunnel: vxlan
+# or
+# tunnel: geneve
+
+# Taint: Remove Control Plain Taint instead of 172-31-30-212 use internal ip of master node, so that you can schedule on the master node also
+# kubectl taint nodes ip-172-31-30-212 node-role.kubernetes.io/control-plane:NoSchedule-
+
+# Add control-plane taint
+# kubectl taint nodes <node-name> node-role.kubernetes.io/control-plane=:NoSchedule
+
+# Remove control-plane taint
+# kubectl taint nodes <node-name> node-role.kubernetes.io/control-plane:NoSchedule-
+
+# Add custom taint
+# kubectl taint nodes <node-name> key=value:NoSchedule
+
+# Remove custom taint
+# kubectl taint nodes <node-name> key=value:NoSchedule-
