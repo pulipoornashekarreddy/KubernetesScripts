@@ -19,19 +19,19 @@ NGINX_CONF_LINK="/etc/nginx/sites-enabled/cleanerp.conf"
 
 # Domains to configure (space-separated)
 DOMAINS=(
-  "profile.cleanerp.com"
-  "test-profile.cleanerp.com"
+  # "profile.cleanerp.com"
+  # "test-profile.cleanerp.com"
   "identity.cleanerp.com"
   "test-identity.cleanerp.com"
-  "academic.cleanerp.com"
-  "test-academic.cleanerp.com"
-  "www.cleanerp.com"
-  "cleanerp.com"
-  "test.cleanerp.com"
-  "test-metrics.cleanerp.com"
-  "metrics.cleanerp.com"
-  "assessment.cleanerp.com"
-  "test-assessment.cleanerp.com"
+  # "academic.cleanerp.com"
+  # "test-academic.cleanerp.com"
+  # "www.cleanerp.com"
+  # "cleanerp.com"
+  # "test.cleanerp.com"
+  # "test-metrics.cleanerp.com"
+  # "metrics.cleanerp.com"
+  # "assessment.cleanerp.com"
+  # "test-assessment.cleanerp.com"
   # add more if required
 )
 

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+HTTP_PORT=30080
+HTTPS_PORT=30443
+
 echo "=============================="
 echo " STEP 1 — Install Ingress-Nginx"
 echo "=============================="
@@ -12,10 +16,32 @@ kubectl wait --namespace ingress-nginx \
   --selector=app.kubernetes.io/component=controller \
   --timeout=180s
 
-kubectl patch svc ingress-nginx-controller -n ingress-nginx -p '{"spec": {"type": "NodePort"}}'
+echo "=============================="
+echo " STEP 2 — Patch Service with Fixed NodePorts"
+echo "=============================="
 
-echo "Ingress Controller Installed."
+kubectl patch svc ingress-nginx-controller -n ingress-nginx \
+  -p "{
+    \"spec\": {
+      \"type\": \"NodePort\",
+      \"ports\": [
+        {
+          \"name\": \"http\",
+          \"port\": 80,
+          \"targetPort\": 80,
+          \"nodePort\": $HTTP_PORT
+        },
+        {
+          \"name\": \"https\",
+          \"port\": 443,
+          \"targetPort\": 443,
+          \"nodePort\": $HTTPS_PORT
+        }
+      ]
+    }
+  }"
 
+echo "Ingress Controller Installed with Fixed Ports."
 
 echo "=============================="
 echo " STEP 2 — Get NodePort Values"
@@ -32,3 +58,12 @@ echo "HTTPS will be available on NodePort: $NODEPORT_HTTPS"
 
 # HTTP will be available on NodePort:  30545
 # HTTPS will be available on NodePort: 32370
+
+####################################################
+####### CONFIGURE KUBELET TO USE CORRECT IP ########
+####################################################
+
+# sudo nano /etc/default/kubelet
+# KUBELET_EXTRA_ARGS=--node-ip=<IP_ADDRESS>
+# sudo systemctl daemon-reload
+# sudo systemctl restart kubelet

@@ -9,28 +9,6 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: test-profile.cleanerp.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: profile-service-beta
-                port:
-                  number: 8082
-
-    - host: test-billing.cleanerp.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: billing-service-beta
-                port:
-                  number: 9310
-
     - host: test-identity.cleanerp.com
       http:
         paths:
@@ -42,38 +20,60 @@ spec:
                 port:
                   number: 8081
 
-    - host: test-academic.cleanerp.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: academic-service-beta
-                port:
-                  number: 9220
+    # - host: test-profile.cleanerp.com
+    #   http:
+    #     paths:
+    #       - path: /
+    #         pathType: Prefix
+    #         backend:
+    #           service:
+    #             name: profile-service-beta
+    #             port:
+    #               number: 8082
 
-    - host: test.cleanerp.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: clean-erp-content-ui-beta
-                port:
-                  number: 3000
+    # - host: test-billing.cleanerp.com
+    #   http:
+    #     paths:
+    #       - path: /
+    #         pathType: Prefix
+    #         backend:
+    #           service:
+    #             name: billing-service-beta
+    #             port:
+    #               number: 9310
 
-    - host: test-metrics.cleanerp.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: metrics-service-beta
-                port:
-                  number: 3001
+    # - host: test-academic.cleanerp.com
+    #   http:
+    #     paths:
+    #       - path: /
+    #         pathType: Prefix
+    #         backend:
+    #           service:
+    #             name: academic-service-beta
+    #             port:
+    #               number: 9220
+
+    # - host: test.cleanerp.com
+    #   http:
+    #     paths:
+    #       - path: /
+    #         pathType: Prefix
+    #         backend:
+    #           service:
+    #             name: clean-erp-content-ui-beta
+    #             port:
+    #               number: 3000
+
+    # - host: test-metrics.cleanerp.com
+    #   http:
+    #     paths:
+    #       - path: /
+    #         pathType: Prefix
+    #         backend:
+    #           service:
+    #             name: metrics-service-beta
+    #             port:
+    #               number: 3001
     # -------------------------------
     # Academics Service (test)
     # -------------------------------
