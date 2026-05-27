@@ -52,6 +52,8 @@ sudo systemctl restart xrdp
 
 echo "🔥 Configuring firewall..."
 sudo ufw allow 3389 || true
+sudo ufw allow 22 
+sudo ufw reload
 sudo ufw --force enable || true
 
 # -------------------------------
@@ -96,8 +98,8 @@ sudo -u $USERNAME bash -c 'echo "startxfce4" > ~/.xsession'
 
 echo "🌐 Installing Firefox..."
 sudo apt install -y firefox
-echo "Set default browser properly"
-xdg-settings set default-web-browser firefox.desktop
+# echo "Set default browser properly"
+# xdg-settings set default-web-browser firefox.desktop
 
 
 # -------------------------------
@@ -157,3 +159,85 @@ echo "Use SSH + VS Code Remote for development"
 echo "Use RDP only for UI tasks"
 
 echo "🚀 Done!"
+
+######
+# To give access to terminal
+######
+sudo apt install -y openssh-server
+
+# Enable & start SSH service
+sudo systemctl enable ssh
+sudo systemctl start ssh
+
+echo "⚙️ Configuring SSH..."
+
+# Create config override directory
+sudo mkdir -p /etc/ssh/sshd_config.d
+
+# Remove conflicting PasswordAuthentication entries from cloud configs
+sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config.d/*.conf || true
+sudo sed -i 's/^KbdInteractiveAuthentication no/KbdInteractiveAuthentication yes/' /etc/ssh/sshd_config || true
+
+# Update main sshd config safely
+sudo sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+sudo sed -i 's/^#\?PubkeyAuthentication.*/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+sudo sed -i 's/^#\?KbdInteractiveAuthentication.*/KbdInteractiveAuthentication yes/' /etc/ssh/sshd_config
+sudo sed -i 's/^#\?UsePAM.*/UsePAM yes/' /etc/ssh/sshd_config
+sudo sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config
+
+# Create high-priority override config (99 loads last)
+cat <<EOF | sudo tee /etc/ssh/sshd_config.d/99-password-auth.conf > /dev/null
+PasswordAuthentication yes
+PubkeyAuthentication yes
+KbdInteractiveAuthentication yes
+UsePAM yes
+PermitRootLogin no
+EOF
+
+# Force final settings at end of main config (last value wins)
+sudo bash -c 'cat >> /etc/ssh/sshd_config <<EOF
+
+# --- Intern SSH Password Login ---
+PasswordAuthentication yes
+PubkeyAuthentication yes
+KbdInteractiveAuthentication yes
+UsePAM yes
+PermitRootLogin no
+EOF'
+
+# Validate SSH config
+echo "🧪 Validating SSH config..."
+sudo sshd -t
+
+# Restart SSH
+echo "🔄 Restarting SSH..."
+sudo systemctl restart ssh
+
+# Open firewall port
+echo "🔥 Opening SSH port..."
+sudo ufw allow 22/tcp || true
+
+# Verify effective config
+echo "✅ Effective SSH Config:"
+sudo sshd -T | grep -E 'passwordauthentication|pubkeyauthentication|kbdinteractiveauthentication|usepam'
+
+echo "✅ SSH configured successfully!"
+
+# -------------------------------
+# Intern user setup
+# -------------------------------
+
+if [ -n "$USERNAME" ]; then
+    echo "👤 Configuring user: $USERNAME"
+
+    # Prevent password expiry
+    sudo chage -M 99999 "$USERNAME"
+
+    # Ensure ownership
+    sudo chown -R "$USERNAME:$USERNAME" "/home/$USERNAME"
+
+    # Ensure bash shell
+    sudo chsh -s /bin/bash "$USERNAME"
+
+    echo "✅ User '$USERNAME' configured."
+fi
