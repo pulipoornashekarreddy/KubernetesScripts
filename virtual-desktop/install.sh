@@ -5,18 +5,14 @@ set -e
 echo "🚀 Starting Ubuntu Remote Dev Environment Setup..."
 
 # -------------------------------
-
 # 1. Update system
-
 # -------------------------------
 
 echo "📦 Updating packages..."
 sudo apt update && sudo apt upgrade -y
 
 # -------------------------------
-
 # 2. Install XFCE (Lightweight GUI)
-
 # -------------------------------
 
 echo "🖥️ Installing XFCE Desktop..."
@@ -24,9 +20,7 @@ sudo apt install -y xfce4 xfce4-goodies
 
 
 # -------------------------------
-
 # 3. Install xRDP
-
 # -------------------------------
 
 echo "🔌 Installing xRDP..."
@@ -45,9 +39,7 @@ sudo adduser xrdp ssl-cert
 sudo systemctl restart xrdp
 
 # -------------------------------
-
 # 4. Open firewall port
-
 # -------------------------------
 
 echo "🔥 Configuring firewall..."
@@ -57,9 +49,7 @@ sudo ufw reload
 sudo ufw --force enable || true
 
 # -------------------------------
-
 # 5. Install basic dev tools
-
 # -------------------------------
 
 echo "💻 Installing development tools..."
@@ -74,9 +64,7 @@ curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install -y nodejs
 
 # -------------------------------
-
 # 6. Create intern user
-
 # -------------------------------
 
 read -p "👤 Enter username for intern: " USERNAME
@@ -91,9 +79,7 @@ sudo -u $USERNAME bash -c 'echo "startxfce4" > ~/.xsession'
 
 
 # -------------------------------
-
 # 8. Install Firefox
-
 # -------------------------------
 
 echo "🌐 Installing Firefox..."
@@ -103,9 +89,7 @@ sudo apt install -y firefox
 
 
 # -------------------------------
-
 # 9. Install VS Code
-
 # -------------------------------
 
 echo "🖥️ Installing Visual Studio Code..."
@@ -117,16 +101,13 @@ sudo apt update
 sudo apt install -y code
 
 # -------------------------------
-
 # 10. Generate SSH key for CodeCommit access
-
 # -------------------------------
 
 ssh-keygen -t rsa -b 2048 -C "codecommit-access"
 echo "✅ SSH key generated for CodeCommit access. Remember to add the public key to AWS IAM."
 
-# ------------------------------- 
-
+# -------------------------------
 # Setup config manually for codecommit access
 # nano ~/.ssh/config
 # Host git-codecommit.*.amazonaws.com
@@ -137,9 +118,7 @@ echo "✅ SSH key generated for CodeCommit access. Remember to add the public ke
 # To test
 # ssh git-codecommit.ap-south-1.amazonaws.com
 # -------------------------------
-
 # 11. Show final info
-
 # -------------------------------
 
 IP=$(curl -s ifconfig.me || hostname -I | awk '{print $1}')
