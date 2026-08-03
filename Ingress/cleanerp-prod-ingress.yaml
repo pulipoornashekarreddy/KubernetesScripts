@@ -9,28 +9,6 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: profile.cleanerp.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: profile-service-prod
-                port:
-                  number: 8082
-    
-    - host: billing.cleanerp.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: billing-service-prod
-                port:
-                  number: 8310
-    
     - host: identity.cleanerp.com
       http:
         paths:
@@ -42,6 +20,17 @@ spec:
                 port:
                   number: 8081
 
+    - host: profile.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: profile-service-prod
+                port:
+                  number: 8082
+
     - host: academic.cleanerp.com
       http:
         paths:
@@ -51,37 +40,48 @@ spec:
               service:
                 name: academic-service-prod
                 port:
-                  number: 8220
+                  number: 8083
 
-    - host: www.cleanerp.com
+    - host: billing.cleanerp.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: clean-erp-content-ui-prod
+                name: billing-service-prod
                 port:
-                  number: 3000
+                  number: 8084
 
-    - host: cleanerp.com
+    - host: retail.cleanerp.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: clean-erp-content-ui-prod
+                name: retail-service-prod
                 port:
-                  number: 3000
+                  number: 8085
 
-    - host: metrics.cleanerp.com
+    - host: transportation.cleanerp.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: metrics-service-prod
+                name: transportation-service-prod
                 port:
-                  number: 3001
+                  number: 8086
+    
+    - host: payment.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: payment-service-prod
+                port:
+                  number: 8087

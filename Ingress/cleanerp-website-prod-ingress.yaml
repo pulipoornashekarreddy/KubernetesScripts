@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: new.cleanerp.com
+    - host: www.cleanerp.com
       http:
         paths:
           - path: /

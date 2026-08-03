@@ -20,49 +20,71 @@ spec:
                 port:
                   number: 8081
 
-    # - host: test-profile.cleanerp.com
-    #   http:
-    #     paths:
-    #       - path: /
-    #         pathType: Prefix
-    #         backend:
-    #           service:
-    #             name: profile-service-beta
-    #             port:
-    #               number: 8082
+    - host: test-profile.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: profile-service-beta
+                port:
+                  number: 8082
+    
+    - host: test-academic.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: academic-service-beta
+                port:
+                  number: 8083
 
-    # - host: test-billing.cleanerp.com
-    #   http:
-    #     paths:
-    #       - path: /
-    #         pathType: Prefix
-    #         backend:
-    #           service:
-    #             name: billing-service-beta
-    #             port:
-    #               number: 9310
+    - host: test-billing.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: billing-service-beta
+                port:
+                  number: 8084
 
-    # - host: test-academic.cleanerp.com
-    #   http:
-    #     paths:
-    #       - path: /
-    #         pathType: Prefix
-    #         backend:
-    #           service:
-    #             name: academic-service-beta
-    #             port:
-    #               number: 9220
+    - host: test-retail.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: retail-service-beta
+                port:
+                  number: 8085
 
-    # - host: test.cleanerp.com
-    #   http:
-    #     paths:
-    #       - path: /
-    #         pathType: Prefix
-    #         backend:
-    #           service:
-    #             name: clean-erp-content-ui-beta
-    #             port:
-    #               number: 3000
+    - host: test-transportation.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: transportation-service-beta
+                port:
+                  number: 8086
+    
+    - host: test-payment.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: payment-service-beta
+                port:
+                  number: 8087
 
     # - host: test-metrics.cleanerp.com
     #   http:
