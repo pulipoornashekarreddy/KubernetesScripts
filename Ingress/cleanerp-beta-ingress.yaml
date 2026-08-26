@@ -86,26 +86,13 @@ spec:
                 port:
                   number: 8087
 
-    # - host: test-metrics.cleanerp.com
-    #   http:
-    #     paths:
-    #       - path: /
-    #         pathType: Prefix
-    #         backend:
-    #           service:
-    #             name: metrics-service-beta
-    #             port:
-    #               number: 3001
-    # -------------------------------
-    # Academics Service (test)
-    # -------------------------------
-    # - host: test-academics.cleanerp.com
-    #   http:
-    #     paths:
-    #       - path: /
-    #         pathType: Prefix
-    #         backend:
-    #           service:
-    #             name: academics-service-beta
-    #             port:
-    #               number: 9310
+    - host: test-scout.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: scout-service-beta
+                port:
+                  number: 8088

@@ -85,3 +85,14 @@ spec:
                 name: payment-service-prod
                 port:
                   number: 8087
+
+    - host: scout.cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: scout-service-prod
+                port:
+                  number: 8088
