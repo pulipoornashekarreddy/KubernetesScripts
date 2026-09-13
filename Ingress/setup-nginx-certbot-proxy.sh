@@ -35,6 +35,7 @@ DOMAINS=(
   "test-payment.cleanerp.com"
   "scout.cleanerp.com"
   "test-scout.cleanerp.com"
+  "cleanerp.com"
   "www.cleanerp.com"
   "beta.cleanerp.com"
   "v2.perfectsde.com"
