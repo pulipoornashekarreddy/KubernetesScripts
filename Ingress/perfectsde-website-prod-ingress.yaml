@@ -9,6 +9,28 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
+    - host: www.perfectsde.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: perfect-sde-content-website-prod
+                port:
+                  number: 80
+
+    - host: perfectsde.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: perfect-sde-content-website-prod
+                port:
+                  number: 80
+
     - host: v2.perfectsde.com
       http:
         paths:
