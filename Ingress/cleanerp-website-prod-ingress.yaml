@@ -19,3 +19,14 @@ spec:
                 name: clean-erp-content-website-prod
                 port:
                   number: 80
+
+    - host: cleanerp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: clean-erp-content-website-prod
+                port:
+                  number: 80
